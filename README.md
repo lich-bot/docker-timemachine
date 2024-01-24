@@ -6,7 +6,7 @@ If you want to use this on an ARM-Device (like the Raspberry Pi), you have two o
 
 - Get the precompiled image (latest compilation on 29-03-2018):
     ```
-    $ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /external_volume:/timemachine -it -p 548:548 -p 636:636 odarriba/timemachine-rpi
+    $ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /external_volume:/timemachine -it -p 548:548 -p 636:636 lich-bot/timemachine-rpi
     ```
 - Build the image directly on your device:
     ```
@@ -21,7 +21,7 @@ If you want to use this on an ARM-Device (like the Raspberry Pi), you have two o
 To download the docker container and execute it, simply run:
 
 ```
-$ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /external_volume:/timemachine -it -p 548:548 -p 636:636 --ulimit nofile=65536:65536 odarriba/timemachine
+$ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /external_volume:/timemachine -it -p 548:548 -p 636:636 --ulimit nofile=65536:65536 lich-bot/timemachine
 ```
 
 Replace `external_volume` with a local path where you want to store your data.
@@ -162,7 +162,4 @@ Because if you don't do it this way, the discovery message won't be able to reac
 
 
 ## Contributors
-
-* Óscar de Arriba (odarriba@gmail.com)
-* Daniel Iñigo (demil133@gmail.com)
-* Josef Friedrich ([@Josef-Friedrich](https://github.com/Josef-Friedrich))
+* lich-bot ([@lich-bot](https://github.com/lich-bot))
