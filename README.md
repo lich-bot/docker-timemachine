@@ -6,7 +6,7 @@ If you want to use this on an ARM-Device (like the Raspberry Pi), you have two o
 
 - Get the precompiled image (latest compilation on 29-03-2018):
     ```
-    $ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /external_volume:/timemachine -it -p 548:548 -p 636:636 odarriba/timemachine-rpi
+    $ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /external_volume:/timemachine -it -p 548:548 -p 636:636 lich-bot/timemachine-rpi
     ```
 - Build the image directly on your device:
     ```
@@ -21,7 +21,7 @@ If you want to use this on an ARM-Device (like the Raspberry Pi), you have two o
 To download the docker container and execute it, simply run:
 
 ```
-$ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /external_volume:/timemachine -it -p 548:548 -p 636:636 --ulimit nofile=65536:65536 odarriba/timemachine
+$ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /external_volume:/timemachine -it -p 548:548 -p 636:636 --ulimit nofile=65536:65536 lich-bot/timemachine
 ```
 
 Replace `external_volume` with a local path where you want to store your data.
@@ -51,7 +51,6 @@ But take care that:
 
 Now you have a docker instance running `netatalk`.
 
-
 ### Step 3 - Enable Auto Discovery
 
 Avahi daemon is commonly used to help your computers to find the services provided by a server.
@@ -65,16 +64,11 @@ Avahi isn't built into this Docker image because, due to Docker's networking lim
 * Copy the service description file from `avahi/afpd.service` to `/etc/avahi/services/afpd.service`
 * Restart Avahi's daemon: `sudo /etc/init.d/avahi-daemon restart`
 
-
 ### Step 4 - Configure Your Firewall
 
 Make sure
 
 * your server can receive traffic on port `548` and `636` (e.g., `ufw allow 548`, (`636` respectively)).
-
-* your Mac allows outgoing connections (Little Snitch?)
-
-
 
 ### Step 5 - Start Using It
 
@@ -144,7 +138,7 @@ add-account USERNAME PASSWORD VOL_NAME VOL_ROOT [VOL_SIZE_MB]
 Save the above file as `entrypoint.sh` and make sure it is marked as executable (`chmod +x entrypoint.sh`). Then invoke `docker run` as:
 
 ```
-$ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /external_volume:/timemachine -it -p 548:548 -p 636:636 -v entrypoint.sh:/entrypoint.sh odarriba/timemachine-rpi
+$ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /external_volume:/timemachine -it -p 548:548 -p 636:636 -v entrypoint.sh:/entrypoint.sh lich-bot/timemachine-rpi
 ```
 
 #### I am still having trouble ...
@@ -153,13 +147,9 @@ $ docker run -h timemachine --name timemachine --restart=unless-stopped -d -v /e
 
 * A Time Machine network disk is just a disk image in an AFP volume that supports the correct level of encryption. So to be recognised by the TimeMachine daemon, you should mount the unit manually for the first time, configure TimeMachine on your computer, and then the OS will do that for you automatically.
 
-
-
 #### Why do I need to install Avahi on your host and not in the container?
 
 Because if you don't do it this way, the discovery message won't be able to reach your computers.
-
-
 
 ## Contributors
 
